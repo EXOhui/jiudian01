@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background: url('images/1.jpg');
+            background-size: cover;
+        }
+        .box{
+            width: 800px;
+            margin: 150px auto;
+        }
+        form input{
+            height:30px;
+        }
+        form{
+            color:#fff;
+            font-size: 22px;
+            height: 600px;
+        }
+        form p{
+            position: relative;
+            margin: auto;
+            height: 60px;
+        }
+        form p input,textarea,select{
+            position: absolute;
+            left:180px;
+            border:none;
+            background:#fff;
+            width:350px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <form action="" method="post">
+        <p>
+            入住日期: <input name="comeday" type="date" style="color: #000;">
+        </p>
+        <p>
+            离店日期: <input name="goday" type="date" style="color: #000;">
+        </p>
+        <p>
+            房间类型: <select class="select" name="leixing" id="" style="color: #000;"></select>
+        </p>
+        <p>
+            房间剩余数量: <span class="yumuch">6</span>
+            价格: <span class="daymoney">448元</span>/每天
+        </p>
+        <p>
+            预订数量: <input name="shuliang" type="text" style="color: #000;">
+        </p>
+        <p>
+            入住人姓名: <input name="name" type="text" style="color: #000;">
+        </p>
+        <p>
+            联系人: <input name="rename" type="text" style="color: #000;">
+        </p>
+        <p>
+            联系电话: <input name="phone" type="text" style="color: #000;">
+        </p>
+        <p style="height: 70px;">
+            留言: <textarea id="text" name="liuyan" class="liuyan" id="liuyan" style="color: #000;"></textarea>
+        </p>
+    </form>
+    <p style="margin-left: 5px;">
+        <button id="btn" class="btn btn-primary">提交订单</button>
+        <button id="reset" class="btn btn-danger">重置</button>
+        <button id="close" class="btn btn-info">关闭本页</button>
+    </p>
+</div>
+<script src="js/jquery-1.12.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/PageNav.js"></script>
+<script type="text/javascript" src="js/underscore.js"></script>
+<script>
+    $("#btn").click(function () {
+        $.post("/yuding", {
+            comeday: $("input[name=comeday]").val(),
+            goday: $("input[name=goday]").val(),
+            leixing: $(".select").val(),
+            shuliang: $("input[name=shuliang]").val(),
+            name: $("input[name=name]").val(),
+            rename: $("input[name=rename]").val(),
+            phone: $("input[name=phone]").val(),
+            liuyan: $(".liuyan").val()
+        }, function (data) {
+            if (data.result == 1) {
+                alert("提交成功！");
+                window.location.href = '/chaxun';
+            } else if (data.result == -1) {
+                alert("提交失败,被占用！");
+            } else if (data.result == -2) {
+                alert("服务器错误！请联系管理员，怎么联系我也不知道！");
+            }
+        })
+    });
+
+    $.get("/leibief",function(data){
+        var str="";
+        var data=data.result;
+        for(var i=0;i<data.length;i++){
+            str="<option>"+data[i].leixing+"</option>";
+            $(".select").append(str);
+        }
+    })
+    $(".select").click(function () {
+        console.log($(this).val())
+        var typename=$(this).val();
+        $.get("/jiagef",function(data){
+            var data=data.result;
+            $.each(data, function (i, n) {
+                if(n.leixing==typename){
+                    $(".daymoney").html(data[i].jiage)
+                    $(".yumuch").html(data[i].yushuliang)
+                }
+            })
+        })
+    })
+
+    $("#reset").click(function () {
+        $("input[type=text]").val("");
+        $("input[type=date]").val("");
+        $("#text").val("");
+    })
+    $("#close").click(function () {
+        window.location="/"
+    })
+
+
+</script>
+</body>
+</html>

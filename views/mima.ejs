@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .cont{
+            width:30%;
+            position: absolute;
+            top: 20%;
+            left: 10%;
+        }
+    </style>
+</head>
+<body style="background: #3B2A20">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">伟涛酒店后台管理系统</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">入住管理<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/datang">大堂入住</a></li>
+                        <li><a href="/dindan">订单入住</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">退房管理<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/tui">退房管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">记录查询<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/check">入住记录查询</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">房间管理<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/refer">查询房间信息</a></li>
+                        <li><a href="#">新建房间</a></li>
+                        <li><a href="#">删除房间</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">房类管理<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/lei">房间类别管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">修改密码<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="mima">修改密码</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">查看房间<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/room">查看房间</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="cont">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="yonghuming" class="col-sm-2 control-label" style="color:#CA8452;">用户名：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="yonghuming" id="yonghuming" placeholder="">
+                <em></em>
+                <span class="explain"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="mima" class="col-sm-2 control-label" style="color:#CA8452;">密码：</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" name="mima" id="mima" placeholder="">
+                <em></em>
+                <span class="explain"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" id="update" class="btn btn-danger">更改密码</button>
+                <button type="button" id="yes" class="btn btn-default">
+                    <a href="/mange">取消</a>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="js/jquery-1.12.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/PageNav.js"></script>
+<script>
+    $("#update").click(function () {
+        $.post("/changepw", {
+            "yonghuming": $("#yonghuming").val(),
+            "mima": $("#mima").val()
+        }, function (data) {
+            alert("修改成功，请重新登录");
+            window.location = "/login"
+        });
+    });
+    $.get("/name", function (data) {
+        var getname = data.results[0].yonghuming;
+        $("#yonghuming").val(getname);
+    })
+</script>
+</body>
+</html>

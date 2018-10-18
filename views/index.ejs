@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background: url('images/1.jpg');
+            background-size: cover;
+        }
+        .box{
+            width:100%;
+            height:100%
+        }
+        .nav{
+            width:1200px;
+            height:60px;
+            margin: 100px auto;
+            background:skyblue;
+            border-radius: 30px;
+        }
+        ul{
+            height: 100%;
+        }
+        ul li{
+            float: left;
+            list-style: none;
+            width:20%;
+            height:60px;
+            line-height: 60px;
+            text-align: center;
+        }
+        ul li a{
+            color:#000;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="nav">
+        <ul>
+            <li><a href="/">首页</a></li>
+            <li><a href="/yuding">在线预订</a></li>
+            <li><a href="/chaxun">订单查询</a></li>
+            <li><a href="/login">酒店管理</a></li>
+            <li><a href="/">关于我们</a></li>
+        </ul>
+    </div>
+    <div class="cont">
+        <table class="table table-striped" style="margin-top: 50px;background: #D1B48C;">
+            <thead>
+            <tr>
+                <th>类别标识</th>
+                <th>房间类型</th>
+                <th>面积(平方米)</th>
+                <th>床位数</th>
+                <th>早餐</th>
+                <th>网络</th>
+                <th>电视</th>
+                <th>价格(元/每天)</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody id="tbody"></tbody>
+
+        </table>
+        <div id="pagenavbox"></div>
+    </div>
+</div>
+<script src="js/jquery-1.12.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/PageNav.js"></script>
+<script type="text/javascript" src="js/underscore.js"></script>
+<script>
+    $.get("/doadd?page=1", function (data) {
+        new PageNav({
+            boxid: "pagenavbox",
+            page: 1,
+            pageAmount: data.pageAmount,
+            change: function (pagenumber) {
+                gotopage(pagenumber);
+            }
+        });
+        gotopage(1);
+    });
+    function gotopage(pagenumber) {
+        $("#tbody").empty();
+        $.get("/doadd?page=" + pagenumber, function (data) {
+            $.each(data.results, function (i, n) {
+                //创建一个tr标签
+                $tr = $("<tr class='shows'></tr>");
+                $("<td></td>").html(n.sid).appendTo($tr);
+                $("<td></td>").html(n.leixing).appendTo($tr);
+                $("<td></td>").html(n.mianji).appendTo($tr);
+                $("<td></td>").html(n.chuangshuliang).appendTo($tr);
+                $("<td></td>").html(n.zaocan).appendTo($tr);
+                $("<td></td>").html(n.wangluo).appendTo($tr);
+                $("<td></td>").html(n.dianshi).appendTo($tr);
+                $("<td></td>").html(n.jiage).appendTo($tr);
+                $("<td></td>").html("<button type='button' id='yuding' class='work' style='background: #DF8F29;color: #fff;'>免费预订</button>").appendTo($tr);
+                //上树
+                $tr.appendTo($("#tbody"));
+            });
+        });
+    }
+</script>
+</body>
+</html>

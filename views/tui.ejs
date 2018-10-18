@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .cont{
+            width:80%;
+            height:90%;
+            position: absolute;
+            left: 20%;
+        }
+        .cont h3{
+            color:#CA8452;
+        }
+        .cont p{
+            padding-left: 10%;
+            color:#CA8452;
+            font-size: 20px;
+        }
+        .cont .span{
+            margin-left: 10%;
+            color:#CA8452;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body style="background: #3B2A20">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">伟涛酒店后台管理系统</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="/datang" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">入住管理<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/datang">大堂入住</a></li>
+                        <li><a href="/dindan">订单入住</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">退房管理<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/tui">退房管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">记录查询<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/check">入住记录查询</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">房间管理<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/refer">查询房间信息</a></li>
+                        <li><a href="#">新建房间</a></li>
+                        <li><a href="#">删除房间</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">房类管理<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/lei">房间类别管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">修改密码<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="mima">修改密码</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">查看房间<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/room">查看房间</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="cont">
+    <p style="margin-top: 20px;margin-bottom: 5%;">
+        <span>请输入房间号:</span>
+         <input type="text" style="color:#000;" class="nr"> <button class="cha btn btn-primary">查询</button>
+    </p>
+    <div class="aa">
+    <h3>顾客信息</h3>
+    <p>
+        <span>
+            证件类型: <span class="zjleixing kong"></span>
+        </span>
+        <span class="span">
+            证件号: <span class="zjhao kong"></span>
+        </span>
+    </p>
+    <p>
+        <span>
+            姓名: <span class="name kong"></span>
+        </span>
+        <span class="span" style="margin-left: 14.3%;">
+            性别: <span class="sex kong"></span>
+        </span>
+    </p>
+    <h3 class="fxx">入住信息</h3>
+    <p>
+        <span>
+            入住号: <span class="ruzhuhao kong"></span>
+        </span>
+    </p>
+    <p>
+        <span style="margin-left: -1.5%;">
+            房间类型: <span class="leixing kong"></span>
+        </span>
+        <span style="margin-left: 10%;">
+            剩余数量: <span class="shuliang kong"></span>
+        </span>
+    </p>
+    <p style="margin-left: -1.5%;">
+        入住日期: <span class="riqi kong"></span>
+    </p>
+    <p>
+        入住人: <span class="ruzhuname kong"></span>
+    </p>
+    <p>
+            <span style="margin-left: -1.5%;">
+                    入住天数: <span class="day kong"></span>
+            </span>
+        <span class="span" style="margin-left: 13%;">
+                价格: <span class="jiage kong"></span>
+            </span>
+    </p>
+    <p style="margin-left: -1.5%;">
+        消费金额: <span class="xiaofei kong"></span>
+    </p>
+    <p style="margin-top: 2%;margin-left: 5%;">
+        <button class="tuichu btn btn-primary" style="margin-right: 5%;">退房</button>
+        <button class="btn btn-info">完成</button>
+    </p>
+    </div>
+</div>
+<script src="js/jquery-1.12.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/PageNav.js"></script>
+<script>
+    $(".cha").click(function () {
+        var fanghao=$(".nr").val();
+        $.get("/tuifangcx",function(data){
+            $(".kong").empty();
+            var data=data.result;
+            $.each(data, function (i, n) {
+                if(n.fanghao==fanghao&&n.zhuangtai!="已退房"){
+                    $(".zjleixing").html(data[i].zjleixing);
+                    $(".zjhao").html(data[i].zhengjianhao);
+                    $(".name").html(data[i].name);
+                    $(".sex").html(data[i].sex);
+                    $(".ruzhuhao").html(data[i].fanghao);
+                    $(".riqi").html(data[i].riqi);
+                    $(".ruzhuname").html(data[i].name);
+                    $(".day").html(data[i].riqi);
+                    $(".jiage").html(data[i].jiage);
+                    $(".xiaofei").html(data[i].xiaofei);
+                    $(".shuliang").html(data[i].yushuliang);
+                    $(".leixing").html(data[i].leixing);
+                }
+            })
+        })
+    })
+    $(".tuichu").click(function () {
+        var sid=$(".ruzhuhao").html();
+        var zhuangtai="未入住";
+        console.log(zhuangtai);
+        $.post("/tuifang/" + sid,{
+            zhuangtai: zhuangtai
+        },function(data){
+            if(data.result == 1){
+                // alert("成功");
+            }else{
+                alert("服务器错误！请联系管理员，怎么联系我也不知道！");
+            }
+        })
+    });
+    $(".tuichu").click(function () {
+        var sid=$(".ruzhuhao").html();
+        var zhuangtai="已退房";
+        console.log(zhuangtai);
+        $.post("/yituifang/" + sid,{
+            zhuangtai: zhuangtai
+        },function(data){
+            if(data.result == 1){
+                // alert("成功");
+            }else{
+                alert("服务器错误！请联系管理员，怎么联系我也不知道！");
+            }
+        })
+    });
+    $(".tuichu").click(function () {
+        var sid=$(".name").html();
+        $.ajax({
+            url: "/tuifang/" + sid,
+            type: "delete",
+            success: function (data) {
+                if (data.result == 1) {
+                    // alert("删除成功");
+                } else {
+                    // alert("服务器错误！");
+                }
+            }
+        });
+    })
+    $(".tuichu").click(function () {
+        var sid=$(".leixing").html();
+        var yushuliang=$(".shuliang").html();
+        $.post("/jiashufanghaotype/" + sid,{
+            yushuliang: yushuliang
+        },function(data){
+            if(data.result == 1){
+                alert("成功");
+                window.location = "/room";
+            }else{
+                alert("服务器错误！请联系管理员，怎么联系我也不知道！");
+            }
+        })
+    });
+</script>
+</body>
+</html>

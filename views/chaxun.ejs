@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background: url("images/1.jpg");
+            background-size: cover;
+        }
+        h1{
+            text-align: center;
+            color: #C57834;
+        }
+        .cont input{
+            border: none;
+            height:35px;
+            width: 300px;
+        }
+        .xinxi{
+            width:50%;
+            height:100%;
+            margin: 0 auto;
+            font-size: 24px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="cont">
+        <h1>订单查询</h1>
+        <p style="margin-left: 700px;margin-top: 50px;">
+            <span style="color:#C57834;font-size: 20px;">订单查询: </span><input class="nr" type="text">
+            <button class="cha btn btn-info">查询</button>
+            <button class="tui btn btn-danger">退出</button>
+        </p>
+        <div class="xinxi" style="margin-left: 37%;margin-top: 5%;">
+
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.12.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/PageNav.js"></script>
+<script type="text/javascript" src="js/underscore.js"></script>
+<script>
+    $(".cha").click(function () {
+        var rename=$(".nr").val();
+        $(".xinxi").empty();
+        $.get("/yudingchaxun",function(data){
+            $(".xinxi").append(str);
+            var str="";
+            var data=data.result;
+            $.each(data, function (i, n) {
+                if(n.rename==rename){
+                    console.log(n)
+                    str= "<p class='comeday'>"+"入住日期:"+data[i].comeday+"</p>" +
+                        "<p class='goday'>"+"离店日期:"+data[i].goday+"</p>" +
+                        "<p class='leixing'>"+"房间类型:"+data[i].leixing+"    <br>预订数量:"+data[i].shuliang+"</p>" +
+                        "<p class='name'>"+"入住人姓名:"+data[i].name+"</p>" +
+                        "<p class='rename'>"+"联系人:"+data[i].rename+"     <br>联系人电话:"+data[i].phone+"</p>" +
+                        "<p class='liuyan'>"+"留言:"+data[i].liuyan+"</p>"
+                    $(".xinxi").append(str);
+                }
+            })
+        })
+    })
+    $(".tui").click(function () {
+        window.location="/yuding"
+    })
+</script>
+</body>
+</html>
